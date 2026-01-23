@@ -16,7 +16,7 @@
   }
 
   ::selection {
-    @apply bg-blue-500/30;
+    @apply bg-red-500/30;
   }
 }
 
@@ -24,7 +24,8 @@
   .prose {
     @apply prose-invert prose-zinc;
     @apply prose-headings:font-semibold prose-headings:text-zinc-100;
-    @apply prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline;
-    @apply prose-code:text-blue-300 prose-code:bg-zinc-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded;
+    @apply prose-p:text-zinc-300;
+    @apply prose-a:text-red-400 prose-a:no-underline hover:prose-a:underline;
+    @apply prose-code:text-red-300 prose-code:bg-zinc-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded;
   }
 }
