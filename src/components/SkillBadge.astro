@@ -1,7 +1,12 @@
 ---
-// SkillBadge component - to be implemented
+interface Props {
+  name: string;
+  icon?: string;
+}
+
+const { name } = Astro.props;
 ---
 
-<span>
-  <!-- Skill badge content -->
+<span class="inline-flex items-center gap-2 px-4 py-2 bg-zinc-800 text-zinc-200 rounded-lg text-sm font-medium">
+  {name}
 </span>

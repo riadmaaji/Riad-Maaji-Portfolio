@@ -1,7 +1,44 @@
 ---
-// ProjectCard component - to be implemented
+interface Props {
+  title: string;
+  description: string;
+  tags: string[];
+  image: string;
+  href: string;
+  featured?: boolean;
+}
+
+const { title, description, tags, image, href, featured = false } = Astro.props;
 ---
 
-<article>
-  <!-- Project card content -->
+<article
+  class:list={[
+    'group relative rounded-2xl bg-zinc-900 overflow-hidden border border-zinc-800 hover:border-zinc-700 transition-colors',
+    featured && 'md:col-span-2',
+  ]}
+>
+  <a href={href} class="block">
+    <div class="aspect-video overflow-hidden bg-zinc-800">
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div class="p-6">
+      <h3 class="text-xl font-semibold text-zinc-100 group-hover:text-blue-400 transition-colors">
+        {title}
+      </h3>
+      <p class="mt-2 text-zinc-400 line-clamp-2">{description}</p>
+      <div class="mt-4 flex flex-wrap gap-2">
+        {tags.slice(0, 4).map((tag) => (
+          <span class="px-3 py-1 text-xs font-medium bg-zinc-800 text-zinc-300 rounded-full">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+  </a>
 </article>
