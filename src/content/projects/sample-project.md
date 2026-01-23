@@ -3,7 +3,7 @@ title: "Sample Project"
 description: "A sample project to demonstrate the portfolio structure. "
 date: 2025-01-01
 tags: ["React", "TypeScript", "Node.js"]
-image: "/projects/sample.png"
+image: "/projects/sample.svg"
 github: "https://github.com/riadmaaji/sample"
 live: "https://sample-project.com"
 featured: true
