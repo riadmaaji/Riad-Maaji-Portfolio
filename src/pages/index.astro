@@ -1,17 +1,69 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
 
+const featuredProjects = await getCollection('projects', ({ data }) => data.featured === true);
+const sortedProjects = featuredProjects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Home"
+  description="Full-Stack Developer passionate about building applications that make a difference"
+>
+  <!-- Hero Section -->
+  <section class="min-h-[80vh] flex items-center px-6">
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="text-blue-400 font-mono mb-4">Hi, my name is</p>
+      <h1 class="text-5xl md:text-7xl font-bold text-zinc-100">
+        Riad Maaji.
+      </h1>
+      <h2 class="text-3xl md:text-5xl font-bold text-zinc-400 mt-2">
+        I build full-stack applications that solve real-world problems.
+      </h2>
+      <p class="mt-6 max-w-xl text-zinc-400 text-lg leading-relaxed">
+        Final-year Computer Science student at Dawson College passionate about building full-stack applications. I enjoy working across the entire stack—from databases and backend logic to frontend interfaces.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a
+          href="/projects"
+          class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors font-medium"
+        >
+          View My Work
+        </a>
+        <a
+          href="mailto:maaji.riad@gmail.com"
+          class="px-6 py-3 border border-zinc-700 hover:border-zinc-500 text-zinc-100 rounded-lg transition-colors font-medium"
+        >
+          Get In Touch
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  {sortedProjects.length > 0 && (
+    <section class="px-6 py-20">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-2xl font-bold text-zinc-100">Featured Projects</h2>
+          <a href="/projects" class="text-blue-400 hover:underline text-sm">
+            View all →
+          </a>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          {sortedProjects.slice(0, 4).map((project) => (
+            <ProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              tags={project.data.tags}
+              image={project.data.image}
+              href={`/projects/${project.id.replace(/\.md$/, '')}`}
+              featured={project.data.featured}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

@@ -1,9 +1,67 @@
 ---
-// About page - to be implemented
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SkillBadge from '../components/SkillBadge.astro';
+
+const skills = {
+  languages: ['JavaScript', 'TypeScript', 'Python', 'C#', 'Java', 'HTML', 'CSS', 'PL/SQL'],
+  frameworks: ['React.js', 'Node.js', 'Express.js', '.NET Framework'],
+  tools: ['MongoDB', 'PostgreSQL', 'Docker', 'REST APIs', 'Git'],
+};
 ---
 
-<html>
-  <body>
-    <h1>About</h1>
-  </body>
-</html>
+<BaseLayout
+  title="About"
+  description="Learn more about me and my background."
+>
+  <section class="px-6 py-20">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl font-bold text-zinc-100 mb-8">About Me</h1>
+
+      <div class="prose prose-lg max-w-none mb-12">
+        <p>
+          Final-year Computer Science student at Dawson College passionate about building full-stack applications that solve real-world problems.
+        </p>
+        <p>
+          I enjoy working across the entire stack—from databases and backend logic to frontend interfaces. My experience in sales has sharpened my communication skills and taught me how to understand client needs, explain technical concepts clearly, and build strong relationships—skills I bring to every team I work with.
+        </p>
+        <p>
+          I'm currently looking for opportunities where I can contribute to meaningful projects while continuing to grow as a developer.
+        </p>
+      </div>
+
+      <!-- Skills -->
+      <div class="space-y-8">
+        <div>
+          <h2 class="text-xl font-semibold text-zinc-100 mb-4">Languages</h2>
+          <div class="flex flex-wrap gap-3">
+            {skills.languages.map((skill) => <SkillBadge name={skill} />)}
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold text-zinc-100 mb-4">Frameworks & Libraries</h2>
+          <div class="flex flex-wrap gap-3">
+            {skills.frameworks.map((skill) => <SkillBadge name={skill} />)}
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold text-zinc-100 mb-4">Tools & Platforms</h2>
+          <div class="flex flex-wrap gap-3">
+            {skills.tools.map((skill) => <SkillBadge name={skill} />)}
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="mt-12">
+        <h2 class="text-xl font-semibold text-zinc-100 mb-4">Education</h2>
+        <div class="border-l-2 border-zinc-800 pl-6">
+          <h3 class="font-medium text-zinc-100">Computer Science Technology</h3>
+          <p class="text-zinc-400">Dawson College</p>
+          <p class="text-sm text-zinc-500">Expected 2026</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

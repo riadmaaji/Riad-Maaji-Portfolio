@@ -1,9 +1,18 @@
 ---
-// 404 page - to be implemented
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html>
-  <body>
-    <h1>404 - Page Not Found</h1>
-  </body>
-</html>
+<BaseLayout title="Page Not Found" description="The page you're looking for doesn't exist.">
+  <section class="min-h-[60vh] flex items-center justify-center px-6">
+    <div class="text-center">
+      <h1 class="text-6xl font-bold text-zinc-100 mb-4">404</h1>
+      <p class="text-xl text-zinc-400 mb-8">Page not found</p>
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors font-medium"
+      >
+        Go Home
+      </a>
+    </div>
+  </section>
+</BaseLayout>

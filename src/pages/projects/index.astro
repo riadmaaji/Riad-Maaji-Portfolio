@@ -1,9 +1,41 @@
 ---
-// Projects listing page - to be implemented
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const sortedProjects = allProjects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<html>
-  <body>
-    <h1>Projects</h1>
-  </body>
-</html>
+<BaseLayout
+  title="Projects"
+  description="A collection of projects I've built."
+>
+  <section class="px-6 py-20">
+    <div class="max-w-5xl mx-auto">
+      <header class="mb-12">
+        <h1 class="text-4xl font-bold text-zinc-100">Projects</h1>
+        <p class="mt-4 text-lg text-zinc-400 max-w-2xl">
+          A selection of projects I've worked on. Each one taught me something new.
+        </p>
+      </header>
+
+      {sortedProjects.length > 0 ? (
+        <div class="grid md:grid-cols-2 gap-6">
+          {sortedProjects.map((project) => (
+            <ProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              tags={project.data.tags}
+              image={project.data.image}
+              href={`/projects/${project.id.replace(/\.md$/, '')}`}
+              featured={project.data.featured}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="text-zinc-500">No projects yet. Check back soon!</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
