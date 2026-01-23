@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-zinc-950 text-zinc-100 antialiased;
+  }
+
+  ::selection {
+    @apply bg-blue-500/30;
+  }
+}
+
+@layer components {
+  .prose {
+    @apply prose-invert prose-zinc;
+    @apply prose-headings:font-semibold prose-headings:text-zinc-100;
+    @apply prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline;
+    @apply prose-code:text-blue-300 prose-code:bg-zinc-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded;
+  }
+}
