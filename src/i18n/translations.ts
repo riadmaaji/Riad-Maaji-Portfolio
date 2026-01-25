@@ -16,7 +16,7 @@ export const translations = {
 
     // Hero
     'hero.greeting': 'Hi, my name is',
-    'hero.name': 'Riad Maaji.',
+    'hero.name': 'Riad.',
     'hero.headline': 'I build full-stack applications that solve real-world problems.',
     'hero.bio': 'Final-year Computer Science student at Dawson College passionate about building full-stack applications. I enjoy working across the entire stack—from databases and backend logic to frontend interfaces.',
     'hero.cta.work': 'View My Work',
@@ -68,7 +68,7 @@ export const translations = {
 
     // Hero
     'hero.greeting': 'Bonjour, je m\'appelle',
-    'hero.name': 'Riad Maaji.',
+    'hero.name': 'Riad.',
     'hero.headline': 'Je crée des applications full-stack qui résolvent des problèmes concrets.',
     'hero.bio': 'Étudiant en dernière année en informatique au Collège Dawson, passionné par le développement d\'applications full-stack. J\'aime travailler sur l\'ensemble de la pile technologique—des bases de données à la logique backend jusqu\'aux interfaces frontend.',
     'hero.cta.work': 'Voir mes projets',
