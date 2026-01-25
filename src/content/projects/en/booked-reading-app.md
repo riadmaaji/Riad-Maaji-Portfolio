@@ -3,7 +3,7 @@ title: "Booked! Reading App"
 description: "A modern Android e-reader for Project Gutenberg classics with text-to-speech, full-text search, and adaptive UI."
 date: 2025-01-25
 tags: ["Kotlin", "Jetpack Compose", "Room", "Hilt", "Android"]
-images: ["/projects/booked-app-1.jpg", "/projects/booked-app-2.jpg", "/projects/booked-app-3.jpg", "/projects/booked-app-4.jpg"]
+images: ["/projects/booked-app-0.jpg", /projects/booked-app-1.jpg", "/projects/booked-app-2.jpg", "/projects/booked-app-3.jpg", "/projects/booked-app-4.jpg"]
 github: "https://github.com/riadmaaji/Booked-Reading-App"
 featured: true
 ---
