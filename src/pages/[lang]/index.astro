@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+import { languages, useTranslations, type Language } from '../../i18n';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Language };
+const t = useTranslations(lang);
+
+const allProjects = await getCollection('projects', ({ id }) => id.startsWith(`${lang}/`));
+const featuredProjects = allProjects.filter(({ data }) => data.featured === true);
+const sortedProjects = featuredProjects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout
+  title={t('nav.home')}
+  description={t('meta.description')}
+  lang={lang}
+>
+  <!-- Hero Section -->
+  <section class="min-h-[80vh] flex items-center px-6">
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="text-red-400 font-mono mb-4">{t('hero.greeting')}</p>
+      <h1 class="text-5xl md:text-7xl font-bold text-zinc-100">
+        {t('hero.name')}
+      </h1>
+      <h2 class="text-3xl md:text-5xl font-bold text-zinc-400 mt-2">
+        {t('hero.headline')}
+      </h2>
+      <p class="mt-6 max-w-xl text-zinc-400 text-lg leading-relaxed">
+        {t('hero.bio')}
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a
+          href={`/${lang}/projects`}
+          class="px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors font-medium"
+        >
+          {t('hero.cta.work')}
+        </a>
+        <a
+          href="mailto:maaji.riad@gmail.com"
+          class="px-6 py-3 border border-zinc-700 hover:border-zinc-500 text-zinc-100 rounded-lg transition-colors font-medium"
+        >
+          {t('hero.cta.contact')}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  {sortedProjects.length > 0 && (
+    <section class="px-6 py-20">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-2xl font-bold text-zinc-100">{t('featured.title')}</h2>
+          <a href={`/${lang}/projects`} class="text-red-400 hover:underline text-sm">
+            {t('featured.viewAll')}
+          </a>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          {sortedProjects.slice(0, 4).map((project) => (
+            <ProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              tags={project.data.tags}
+              image={project.data.images[0]}
+              href={`/${lang}/projects/${project.id.replace(`${lang}/`, '').replace(/\.md$/, '')}`}
+              featured={project.data.featured}
+              spanFeatured={true}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SkillBadge from '../../components/SkillBadge.astro';
+import { languages, useTranslations, type Language } from '../../i18n';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Language };
+const t = useTranslations(lang);
+
+const skills = {
+  languages: ['JavaScript', 'Python', 'C#', 'Java', 'Kotlin', 'HTML', 'CSS', 'PL/SQL'],
+  frameworks: ['React', 'Node.js', 'Express.js', '.NET Framework', 'Jetpack Compose', 'Entity Framework Core', 'MonoGame', 'Chart.js', 'Leaflet'],
+  tools: ['MongoDB', 'PostgreSQL', 'Docker', 'Git', 'REST APIs', 'Android', 'MQTT', 'WebSockets'],
+};
+---
+
+<BaseLayout
+  title={t('about.title')}
+  description={t('meta.about.description')}
+  lang={lang}
+>
+  <section class="px-6 py-20">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl font-bold text-zinc-100 mb-8">{t('about.title')}</h1>
+
+      <div class="flex flex-col md:flex-row gap-8 md:gap-12 mb-12">
+        <!-- Profile Photo -->
+        <div class="flex-shrink-0 flex justify-center md:justify-start">
+          <img
+            src="/riad.jpg"
+            alt="Riad Maaji"
+            class="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover object-[center_15%] border-4 border-zinc-800"
+          />
+        </div>
+        
+        <!-- Bio -->
+        <div class="prose prose-lg max-w-none">
+          <p>{t('about.bio1')}</p>
+          <p>{t('about.bio2')}</p>
+          <p>{t('about.bio3')}</p>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="space-y-8">
+        <div>
+          <h2 class="text-xl font-semibold text-zinc-100 mb-4">{t('about.skills.languages')}</h2>
+          <div class="flex flex-wrap gap-3">
+            {skills.languages.map((skill) => <SkillBadge name={skill} />)}
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold text-zinc-100 mb-4">{t('about.skills.frameworks')}</h2>
+          <div class="flex flex-wrap gap-3">
+            {skills.frameworks.map((skill) => <SkillBadge name={skill} />)}
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold text-zinc-100 mb-4">{t('about.skills.tools')}</h2>
+          <div class="flex flex-wrap gap-3">
+            {skills.tools.map((skill) => <SkillBadge name={skill} />)}
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="mt-12">
+        <h2 class="text-xl font-semibold text-zinc-100 mb-4">{t('about.education')}</h2>
+        <div class="border-l-2 border-zinc-800 pl-6">
+          <h3 class="font-medium text-zinc-100">{t('about.education.degree')}</h3>
+          <p class="text-zinc-400">{t('about.education.school')}</p>
+          <p class="text-sm text-zinc-500">{t('about.education.date')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

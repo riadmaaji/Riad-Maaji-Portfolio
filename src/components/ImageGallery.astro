@@ -1,0 +1,74 @@
+---
+interface Props {
+  images: string[];
+  alt: string;
+}
+
+const { images, alt } = Astro.props;
+---
+
+{images.length === 1 ? (
+  <img
+    src={images[0]}
+    alt={alt}
+    class="w-full rounded-xl mb-12 border border-zinc-800"
+  />
+) : (
+  <div class="mb-12">
+    <!-- Main Image -->
+    <div class="relative">
+      <img
+        id="gallery-main"
+        src={images[0]}
+        alt={alt}
+        class="w-full rounded-xl border border-zinc-800"
+      />
+    </div>
+    
+    <!-- Thumbnails -->
+    <div class="mt-4 flex gap-3 overflow-x-auto pb-2">
+      {images.map((image, index) => (
+        <button
+          type="button"
+          data-image={image}
+          class:list={[
+            'gallery-thumb flex-shrink-0 w-20 h-14 rounded-lg overflow-hidden border-2 transition-all cursor-pointer',
+            index === 0 ? 'border-red-400' : 'border-zinc-700 hover:border-zinc-500',
+          ]}
+        >
+          <img
+            src={image}
+            alt={`${alt} - ${index + 1}`}
+            class="w-full h-full object-cover"
+          />
+        </button>
+      ))}
+    </div>
+  </div>
+)}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mainImage = document.getElementById('gallery-main') as HTMLImageElement;
+    const thumbs = document.querySelectorAll('.gallery-thumb');
+    
+    if (!mainImage || thumbs.length === 0) return;
+    
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        const newSrc = thumb.getAttribute('data-image');
+        if (newSrc && mainImage) {
+          mainImage.src = newSrc;
+          
+          // Update active state
+          thumbs.forEach((t) => {
+            t.classList.remove('border-red-400');
+            t.classList.add('border-zinc-700');
+          });
+          thumb.classList.remove('border-zinc-700');
+          thumb.classList.add('border-red-400');
+        }
+      });
+    });
+  });
+</script>
