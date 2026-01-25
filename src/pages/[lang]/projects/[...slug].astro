@@ -29,7 +29,7 @@ const t = useTranslations(lang as Language);
 const { Content } = await render(project);
 ---
 
-<BaseLayout title={project.data.title} description={project.data.description} lang={lang}>
+<BaseLayout title={project.data.title} description={project.data.description} lang={lang as Language}>
   <article class="px-6 py-20">
     <div class="max-w-3xl mx-auto">
       <!-- Header -->
