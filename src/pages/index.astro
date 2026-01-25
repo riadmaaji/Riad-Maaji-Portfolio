@@ -1,4 +1,13 @@
 ---
-// Redirect to default locale
-return Astro.redirect('/en/');
+// This page is handled by Cloudflare _redirects file
+// Fallback for local dev / other hosting
 ---
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0;url=/en/">
+  <link rel="canonical" href="/en/">
+</head>
+<body></body>
+</html>
