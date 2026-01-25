@@ -36,7 +36,7 @@ const sortedProjects = allProjects.sort((a, b) => b.data.date.valueOf() - a.data
               title={project.data.title}
               description={project.data.description}
               tags={project.data.tags}
-              image={project.data.image}
+              image={project.data.images[0]}
               href={`/${lang}/projects/${project.id.replace(`${lang}/`, '').replace(/\.md$/, '')}`}
               featured={project.data.featured}
             />

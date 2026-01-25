@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ImageGallery from '../../../components/ImageGallery.astro';
 import { languages, useTranslations, type Language } from '../../../i18n';
 
 export async function getStaticPaths() {
@@ -84,12 +85,8 @@ const { Content } = await render(project);
         </div>
       </header>
 
-      <!-- Featured Image -->
-      <img
-        src={project.data.image}
-        alt={project.data.title}
-        class="w-full rounded-xl mb-12 border border-zinc-800"
-      />
+      <!-- Image Gallery -->
+      <ImageGallery images={project.data.images} alt={project.data.title} />
 
       <!-- Content -->
       <div class="prose prose-lg max-w-none">
