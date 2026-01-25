@@ -26,10 +26,22 @@ const skills = {
     <div class="max-w-3xl mx-auto">
       <h1 class="text-4xl font-bold text-zinc-100 mb-8">{t('about.title')}</h1>
 
-      <div class="prose prose-lg max-w-none mb-12">
-        <p>{t('about.bio1')}</p>
-        <p>{t('about.bio2')}</p>
-        <p>{t('about.bio3')}</p>
+      <div class="flex flex-col md:flex-row gap-8 md:gap-12 mb-12">
+        <!-- Profile Photo -->
+        <div class="flex-shrink-0 flex justify-center md:justify-start">
+          <img
+            src="/riad.jpg"
+            alt="Riad Maaji"
+            class="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover object-[center_15%] border-4 border-zinc-800"
+          />
+        </div>
+        
+        <!-- Bio -->
+        <div class="prose prose-lg max-w-none">
+          <p>{t('about.bio1')}</p>
+          <p>{t('about.bio2')}</p>
+          <p>{t('about.bio3')}</p>
+        </div>
       </div>
 
       <!-- Skills -->
