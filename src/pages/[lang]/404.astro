@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { languages, useTranslations, type Language } from '../../i18n';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Language };
+const t = useTranslations(lang);
+---
+
+<BaseLayout title={t('404.title')} description={t('404.message')} lang={lang}>
+  <section class="min-h-[60vh] flex items-center justify-center px-6">
+    <div class="text-center">
+      <h1 class="text-6xl font-bold text-zinc-100 mb-4">{t('404.title')}</h1>
+      <p class="text-xl text-zinc-400 mb-8">{t('404.message')}</p>
+      <a
+        href={`/${lang}/`}
+        class="inline-flex items-center gap-2 px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors font-medium"
+      >
+        {t('404.cta')}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,8 +1,18 @@
 ---
+import LanguageToggle from './LanguageToggle.astro';
+import { useTranslations, type Language } from '../i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/about', label: 'About' },
+  { href: `/${lang}/`, label: t('nav.home') },
+  { href: `/${lang}/projects`, label: t('nav.projects') },
+  { href: `/${lang}/about`, label: t('nav.about') },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -10,18 +20,19 @@ const currentPath = Astro.url.pathname;
 
 <header class="sticky top-0 z-50 backdrop-blur-md bg-zinc-950/80 border-b border-zinc-800">
   <nav class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="/" class="text-xl font-bold text-zinc-100 hover:text-red-400 transition-colors">
+    <a href={`/${lang}/`} class="text-xl font-bold text-zinc-100 hover:text-red-400 transition-colors">
       Riad Maaji
     </a>
 
-    <ul class="hidden sm:flex items-center gap-6">
+    <div class="flex items-center gap-6">
+      <ul class="hidden sm:flex items-center gap-6">
         {navLinks.map(({ href, label }) => (
           <li>
             <a
               href={href}
               class:list={[
                 'text-sm font-medium transition-colors',
-                currentPath === href
+                currentPath === href || currentPath === href.slice(0, -1)
                   ? 'text-red-400'
                   : 'text-zinc-400 hover:text-zinc-100',
               ]}
@@ -31,5 +42,7 @@ const currentPath = Astro.url.pathname;
           </li>
         ))}
       </ul>
+      <LanguageToggle lang={lang} />
+    </div>
   </nav>
 </header>

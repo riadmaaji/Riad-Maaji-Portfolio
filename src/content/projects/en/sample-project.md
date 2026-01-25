@@ -1,6 +1,6 @@
 ---
 title: "Sample Project"
-description: "A sample project to demonstrate the portfolio structure. "
+description: "A sample project to demonstrate the portfolio structure."
 date: 2025-01-01
 tags: ["React", "TypeScript", "Node.js"]
 image: "/projects/sample.svg"
@@ -15,7 +15,7 @@ This is a sample project placeholder. Replace this content with a description of
 
 ## The Solution
 
-Describe how the project addresses the problem. What approach, What technologies
+Describe how the project addresses the problem. What approach, What technologies.
 
 ## Technical Highlights
 

@@ -2,21 +2,23 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import type { Language } from '../i18n';
 
 interface Props {
   title: string;
   description: string;
   image?: string;
+  lang: Language;
 }
 
-const { title, description, image = '/og-image.png' } = Astro.props;
+const { title, description, image = '/og-image.png', lang } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const siteName = 'Riad Maaji';
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang={lang} class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -57,10 +59,10 @@ const siteName = 'Riad Maaji';
     />
   </head>
   <body class="min-h-screen flex flex-col">
-    <Header />
+    <Header lang={lang} />
     <main class="flex-1">
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
   </body>
 </html>
