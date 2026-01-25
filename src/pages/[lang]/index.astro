@@ -70,6 +70,7 @@ const sortedProjects = featuredProjects.sort((a, b) => b.data.date.valueOf() - a
               image={project.data.images[0]}
               href={`/${lang}/projects/${project.id.replace(`${lang}/`, '').replace(/\.md$/, '')}`}
               featured={project.data.featured}
+              spanFeatured={true}
             />
           ))}
         </div>
