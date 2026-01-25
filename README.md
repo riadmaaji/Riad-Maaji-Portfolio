@@ -1,43 +1,110 @@
-# Astro Starter Kit: Minimal
+# Riad Maaji - Portfolio
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+A personal developer portfolio built with Astro 5, Tailwind CSS 4, and deployed on Cloudflare Pages.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Features
 
-## 🚀 Project Structure
+- **Bilingual Support** - Full English and French translations with language toggle
+- **Project Showcase** - Multi-image gallery for each project with thumbnail navigation
+- **Responsive Design** - Mobile-first with hamburger menu navigation
+- **Dark Theme** - Modern dark UI with red accent colors
+- **SEO Optimized** - Meta tags, Open Graph, and JSON-LD structured data
+- **Fast Performance** - Static site generation with optimized assets
 
-Inside of your Astro project, you'll see the following folders and files:
+## Tech Stack
+
+- **Framework:** [Astro 5](https://astro.build/)
+- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
+- **Typography:** [@tailwindcss/typography](https://tailwindcss.com/docs/typography-plugin)
+- **Deployment:** [Cloudflare Pages](https://pages.cloudflare.com/)
+- **Package Manager:** pnpm
+
+## Project Structure
 
 ```text
 /
 ├── public/
+│   ├── projects/          # Project images
+│   ├── favicon.svg
+│   └── riad.jpg           # Profile photo
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/        # Reusable UI components
+│   ├── content/
+│   │   └── projects/
+│   │       ├── en/        # English project markdown files
+│   │       └── fr/        # French project markdown files
+│   ├── i18n/              # Translation system
+│   ├── layouts/           # Page layouts
+│   ├── pages/
+│   │   ├── index.astro    # Redirects to /en/
+│   │   └── [lang]/        # Locale-based routes
+│   └── styles/            # Global CSS
+├── astro.config.mjs
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Getting Started
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Prerequisites
 
-Any static assets, like images, can be placed in the `public/` directory.
+- Node.js 18+
+- pnpm
 
-## 🧞 Commands
+### Installation
 
-All commands are run from the root of the project, from a terminal:
+```bash
+# Install dependencies
+pnpm install
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+# Start development server
+pnpm dev
 
-## 👀 Want to learn more?
+# Build for production
+pnpm build
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+# Preview production build
+pnpm preview
+```
+
+## Adding Projects
+
+Create markdown files in both `src/content/projects/en/` and `src/content/projects/fr/` with matching slugs:
+
+```yaml
+---
+title: "Project Name"
+description: "Brief description under 160 characters."
+date: 2025-01-25
+tags: ["React", "Node.js", "MongoDB"]
+images: ["/projects/project-1.png", "/projects/project-2.png"]
+github: "https://github.com/username/repo"
+live: "https://example.com"  # optional
+featured: true  # optional
+---
+
+## The Problem
+...
+
+## The Solution
+...
+
+## Technical Highlights
+...
+
+## Outcome
+...
+```
+
+## Commands
+
+| Command | Action |
+| :------ | :----- |
+| `pnpm install` | Install dependencies |
+| `pnpm dev` | Start dev server at `localhost:4321` |
+| `pnpm build` | Build production site to `./dist/` |
+| `pnpm preview` | Preview build locally |
+| `pnpm astro check` | Run TypeScript diagnostics |
+
+## License
+
+All rights reserved.
