@@ -11,10 +11,12 @@ interface Props {
   lang: Language;
 }
 
-const { title, description, image = '/og-image.png', lang } = Astro.props;
+const { title, description, image = '/og-image.svg', lang } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const siteName = 'Riad Maaji';
+const fullTitle = `${siteName} | ${title}`;
+const ogImageURL = new URL(image, Astro.site).toString();
 ---
 
 <!doctype html>
@@ -25,17 +27,29 @@ const siteName = 'Riad Maaji';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Primary Meta Tags -->
-    <title>{title} | {siteName}</title>
-    <meta name="title" content={`${title} | ${siteName}`} />
+    <title>{fullTitle}</title>
+    <meta name="title" content={fullTitle} />
     <meta name="description" content={description} />
+    <meta name="author" content="Riad Maaji" />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Open Graph -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={lang === 'fr' ? 'fr_CA' : 'en_US'} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
 
     <!-- Person Schema -->
     <script type="application/ld+json" set:html={JSON.stringify({
