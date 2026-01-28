@@ -18,9 +18,9 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 backdrop-blur-md bg-zinc-950/80 border-b border-zinc-800">
+<header class="sticky top-0 z-50 backdrop-blur-md bg-zinc-950/80 border-b border-zinc-800/50 animate-slide-down">
   <nav class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href={`/${lang}/`} class="text-xl font-bold text-zinc-100 hover:text-red-400 transition-colors">
+    <a href={`/${lang}/`} class="text-xl font-bold text-zinc-100 hover:text-crimson-400 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(225,29,72,0.5)]">
       Riad Maaji
     </a>
 
@@ -32,9 +32,9 @@ const currentPath = Astro.url.pathname;
             <a
               href={href}
               class:list={[
-                'text-sm font-medium transition-colors',
+                'text-sm font-medium transition-all duration-300 hover-underline',
                 currentPath === href || currentPath === href.slice(0, -1)
-                  ? 'text-red-400'
+                  ? 'text-crimson-400'
                   : 'text-zinc-400 hover:text-zinc-100',
               ]}
             >
@@ -65,16 +65,16 @@ const currentPath = Astro.url.pathname;
   </nav>
 
   <!-- Mobile Navigation Menu -->
-  <div id="mobile-menu" class="hidden sm:hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md">
+  <div id="mobile-menu" class="hidden sm:hidden border-t border-zinc-800/50 bg-zinc-950/95 backdrop-blur-md">
     <ul class="px-6 py-4 space-y-3">
       {navLinks.map(({ href, label }) => (
         <li>
           <a
             href={href}
             class:list={[
-              'block text-base font-medium transition-colors py-2',
+              'block text-base font-medium transition-all duration-300 py-2',
               currentPath === href || currentPath === href.slice(0, -1)
-                ? 'text-red-400'
+                ? 'text-crimson-400'
                 : 'text-zinc-400 hover:text-zinc-100',
             ]}
           >

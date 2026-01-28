@@ -74,7 +74,7 @@ const ogImageURL = new URL(image, Astro.site).toString();
   </head>
   <body class="min-h-screen flex flex-col">
     <Header lang={lang} />
-    <main class="flex-1">
+    <main class="flex-1 animate-fade-in">
       <slot />
     </main>
     <Footer lang={lang} />

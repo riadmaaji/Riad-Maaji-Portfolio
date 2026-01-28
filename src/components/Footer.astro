@@ -11,11 +11,11 @@ const t = useTranslations(lang);
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="border-t border-zinc-800 py-12">
+<footer class="border-t border-zinc-800/50 py-12 animate-fade-in">
   <div class="max-w-5xl mx-auto px-6">
     <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
       <p class="text-sm text-zinc-500">
-        © {currentYear} Riad Maaji. {t('footer.rights')}
+        © {currentYear} <span class="text-zinc-400 hover:text-crimson-400 transition-colors">Riad Maaji</span>. {t('footer.rights')}
       </p>
       <SocialLinks />
     </div>
