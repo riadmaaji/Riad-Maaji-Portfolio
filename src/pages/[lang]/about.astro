@@ -24,9 +24,9 @@ const skills = {
 >
   <section class="px-6 py-20">
     <div class="max-w-3xl mx-auto">
-      <h1 class="text-4xl font-bold text-zinc-100 mb-8">{t('about.title')}</h1>
+      <h1 class="text-4xl font-bold text-zinc-100 mb-8 animate-fade-in-up animate-on-load" style="animation-fill-mode: forwards;">{t('about.title')}</h1>
 
-      <div class="flex flex-col md:flex-row gap-8 md:gap-12 mb-12">
+      <div class="flex flex-col md:flex-row gap-8 md:gap-12 mb-12 animate-fade-in-up animate-on-load delay-100" style="animation-fill-mode: forwards;">
         <!-- Profile Photo -->
         <div class="flex-shrink-0 flex justify-center md:justify-start">
           <img
@@ -46,32 +46,44 @@ const skills = {
 
       <!-- Skills -->
       <div class="space-y-8">
-        <div>
+        <div class="animate-fade-in-up animate-on-load delay-200" style="animation-fill-mode: forwards;">
           <h2 class="text-xl font-semibold text-zinc-100 mb-4">{t('about.skills.languages')}</h2>
           <div class="flex flex-wrap gap-3">
-            {skills.languages.map((skill) => <SkillBadge name={skill} />)}
+            {skills.languages.map((skill, i) => (
+              <div class="animate-fade-in-up animate-on-load" style={`animation-delay: ${300 + i * 50}ms; animation-fill-mode: forwards;`}>
+                <SkillBadge name={skill} />
+              </div>
+            ))}
           </div>
         </div>
 
-        <div>
+        <div class="animate-fade-in-up animate-on-load delay-400" style="animation-fill-mode: forwards;">
           <h2 class="text-xl font-semibold text-zinc-100 mb-4">{t('about.skills.frameworks')}</h2>
           <div class="flex flex-wrap gap-3">
-            {skills.frameworks.map((skill) => <SkillBadge name={skill} />)}
+            {skills.frameworks.map((skill, i) => (
+              <div class="animate-fade-in-up animate-on-load" style={`animation-delay: ${500 + i * 50}ms; animation-fill-mode: forwards;`}>
+                <SkillBadge name={skill} />
+              </div>
+            ))}
           </div>
         </div>
 
-        <div>
+        <div class="animate-fade-in-up animate-on-load delay-600" style="animation-fill-mode: forwards;">
           <h2 class="text-xl font-semibold text-zinc-100 mb-4">{t('about.skills.tools')}</h2>
           <div class="flex flex-wrap gap-3">
-            {skills.tools.map((skill) => <SkillBadge name={skill} />)}
+            {skills.tools.map((skill, i) => (
+              <div class="animate-fade-in-up animate-on-load" style={`animation-delay: ${700 + i * 50}ms; animation-fill-mode: forwards;`}>
+                <SkillBadge name={skill} />
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
       <!-- Education -->
-      <div class="mt-12">
+      <div class="mt-12 animate-fade-in-up animate-on-load delay-700" style="animation-fill-mode: forwards;">
         <h2 class="text-xl font-semibold text-zinc-100 mb-4">{t('about.education')}</h2>
-        <div class="border-l-2 border-zinc-800 pl-6">
+        <div class="border-l-2 border-crimson-500/50 pl-6 hover:border-crimson-500 transition-colors duration-300">
           <h3 class="font-medium text-zinc-100">{t('about.education.degree')}</h3>
           <p class="text-zinc-400">{t('about.education.school')}</p>
           <p class="text-sm text-zinc-500">{t('about.education.date')}</p>

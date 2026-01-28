@@ -24,26 +24,28 @@ const sortedProjects = featuredProjects.sort((a, b) => b.data.date.valueOf() - a
   <!-- Hero Section -->
   <section class="min-h-[80vh] flex items-center px-6">
     <div class="max-w-5xl mx-auto w-full">
-      <p class="text-red-400 font-mono mb-4">{t('hero.greeting')}</p>
-      <h1 class="text-5xl md:text-7xl font-bold text-zinc-100">
+      <p class="text-crimson-400 font-mono mb-4 animate-fade-in-up animate-on-load delay-100" style="animation-fill-mode: forwards;">
+        {t('hero.greeting')}
+      </p>
+      <h1 class="text-5xl md:text-7xl font-bold text-zinc-100 animate-fade-in-up animate-on-load delay-200" style="animation-fill-mode: forwards;">
         {t('hero.name')}
       </h1>
-      <h2 class="text-3xl md:text-5xl font-bold text-zinc-400 mt-2">
+      <h2 class="text-3xl md:text-5xl font-bold text-zinc-400 mt-2 animate-fade-in-up animate-on-load delay-300" style="animation-fill-mode: forwards;">
         {t('hero.headline')}
       </h2>
-      <p class="mt-6 max-w-xl text-zinc-400 text-lg leading-relaxed">
+      <p class="mt-6 max-w-xl text-zinc-400 text-lg leading-relaxed animate-fade-in-up animate-on-load delay-400" style="animation-fill-mode: forwards;">
         {t('hero.bio')}
       </p>
-      <div class="mt-8 flex flex-wrap gap-4">
+      <div class="mt-8 flex flex-wrap gap-4 animate-fade-in-up animate-on-load delay-500" style="animation-fill-mode: forwards;">
         <a
           href={`/${lang}/projects`}
-          class="px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors font-medium"
+          class="px-6 py-3 bg-crimson-500 hover:bg-crimson-600 text-white rounded-lg font-medium btn-glow"
         >
           {t('hero.cta.work')}
         </a>
         <a
           href="mailto:maaji.riad@gmail.com"
-          class="px-6 py-3 border border-zinc-700 hover:border-zinc-500 text-zinc-100 rounded-lg transition-colors font-medium"
+          class="px-6 py-3 border border-zinc-700 hover:border-crimson-500/50 text-zinc-100 rounded-lg transition-all duration-300 font-medium hover:bg-crimson-500/10"
         >
           {t('hero.cta.contact')}
         </a>
@@ -57,21 +59,23 @@ const sortedProjects = featuredProjects.sort((a, b) => b.data.date.valueOf() - a
       <div class="max-w-5xl mx-auto">
         <div class="flex items-center justify-between mb-8">
           <h2 class="text-2xl font-bold text-zinc-100">{t('featured.title')}</h2>
-          <a href={`/${lang}/projects`} class="text-red-400 hover:underline text-sm">
+          <a href={`/${lang}/projects`} class="text-crimson-400 hover:text-crimson-300 transition-colors text-sm hover-underline">
             {t('featured.viewAll')}
           </a>
         </div>
         <div class="grid md:grid-cols-2 gap-6">
-          {sortedProjects.slice(0, 4).map((project) => (
-            <ProjectCard
-              title={project.data.title}
-              description={project.data.description}
-              tags={project.data.tags}
-              image={project.data.images[0]}
-              href={`/${lang}/projects/${project.id.replace(`${lang}/`, '').replace(/\.md$/, '')}`}
-              featured={project.data.featured}
-              spanFeatured={true}
-            />
+          {sortedProjects.slice(0, 4).map((project, index) => (
+            <div class="animate-fade-in-up animate-on-load" style={`animation-delay: ${600 + index * 100}ms; animation-fill-mode: forwards;`}>
+              <ProjectCard
+                title={project.data.title}
+                description={project.data.description}
+                tags={project.data.tags}
+                image={project.data.images[0]}
+                href={`/${lang}/projects/${project.id.replace(`${lang}/`, '').replace(/\.md$/, '')}`}
+                featured={project.data.featured}
+                spanFeatured={true}
+              />
+            </div>
           ))}
         </div>
       </div>

@@ -23,24 +23,26 @@ const sortedProjects = allProjects.sort((a, b) => b.data.date.valueOf() - a.data
   <section class="px-6 py-20">
     <div class="max-w-5xl mx-auto">
       <header class="mb-12">
-        <h1 class="text-4xl font-bold text-zinc-100">{t('projects.title')}</h1>
-        <p class="mt-4 text-lg text-zinc-400 max-w-2xl">
+        <h1 class="text-4xl font-bold text-zinc-100 animate-fade-in-up animate-on-load" style="animation-fill-mode: forwards;">{t('projects.title')}</h1>
+        <p class="mt-4 text-lg text-zinc-400 max-w-2xl animate-fade-in-up animate-on-load delay-100" style="animation-fill-mode: forwards;">
           {t('projects.description')}
         </p>
       </header>
 
       {sortedProjects.length > 0 ? (
         <div class="grid md:grid-cols-2 gap-6">
-          {sortedProjects.map((project) => (
-            <ProjectCard
-              title={project.data.title}
-              description={project.data.description}
-              tags={project.data.tags}
-              image={project.data.images[0]}
-              href={`/${lang}/projects/${project.id.replace(`${lang}/`, '').replace(/\.md$/, '')}`}
-              featured={project.data.featured}
-              showStar={true}
-            />
+          {sortedProjects.map((project, index) => (
+            <div class="animate-fade-in-up animate-on-load" style={`animation-delay: ${200 + index * 100}ms; animation-fill-mode: forwards;`}>
+              <ProjectCard
+                title={project.data.title}
+                description={project.data.description}
+                tags={project.data.tags}
+                image={project.data.images[0]}
+                href={`/${lang}/projects/${project.id.replace(`${lang}/`, '').replace(/\.md$/, '')}`}
+                featured={project.data.featured}
+                showStar={true}
+              />
+            </div>
           ))}
         </div>
       ) : (
