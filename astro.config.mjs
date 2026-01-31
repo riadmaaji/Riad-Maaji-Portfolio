@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://riadmaaji.dev',
+  site: 'https://riadmaaji.com',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],

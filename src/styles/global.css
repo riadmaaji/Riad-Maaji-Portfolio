@@ -238,6 +238,22 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(225, 29, 72, 0.2);
   }
+
+  /* Name glow on hover */
+  .name-glow {
+    transition: all 0.4s ease;
+    text-shadow: 0 0 0 transparent;
+  }
+
+  .name-glow:hover {
+    color: #f43f5e;
+    text-shadow: 
+      0 0 10px rgba(244, 63, 94, 0.5),
+      0 0 20px rgba(244, 63, 94, 0.4),
+      0 0 40px rgba(244, 63, 94, 0.3),
+      0 0 80px rgba(244, 63, 94, 0.2);
+    transform: scale(1.02);
+  }
 }
 
 /* ========================================

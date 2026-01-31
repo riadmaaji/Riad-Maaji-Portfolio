@@ -15,7 +15,7 @@ const { title, description, image = '/og-image.svg', lang } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const siteName = 'Riad Maaji';
-const fullTitle = `${siteName} | ${title}`;
+const fullTitle = siteName;
 const ogImageURL = new URL(image, Astro.site).toString();
 ---
 
@@ -40,8 +40,10 @@ const ogImageURL = new URL(image, Astro.site).toString();
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Riad Maaji - Full-Stack Developer" />
     <meta property="og:locale" content={lang === 'fr' ? 'fr_CA' : 'en_US'} />
 
     <!-- Twitter -->
@@ -50,6 +52,7 @@ const ogImageURL = new URL(image, Astro.site).toString();
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content="Riad Maaji - Full-Stack Developer" />
 
     <!-- Person Schema -->
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -57,7 +60,7 @@ const ogImageURL = new URL(image, Astro.site).toString();
       "@type": "Person",
       "name": "Riad Maaji",
       "jobTitle": "Full-Stack Developer",
-      "url": "https://riadmaaji.dev",
+      "url": "https://riadmaaji.com",
       "sameAs": [
         "https://github.com/riadmaaji",
         "https://linkedin.com/in/riad-maaji"
@@ -78,5 +81,43 @@ const ogImageURL = new URL(image, Astro.site).toString();
       <slot />
     </main>
     <Footer lang={lang} />
+
+    <!-- Back to Top Button -->
+    <button
+      id="back-to-top"
+      aria-label="Back to top"
+      class="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-zinc-800/90 border border-zinc-700/50 text-zinc-400 hover:text-crimson-400 hover:border-crimson-500/50 hover:bg-zinc-800 backdrop-blur-sm shadow-lg shadow-black/20 transition-all duration-300 hover:scale-110 opacity-0 invisible translate-y-4"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+      </svg>
+    </button>
+
+    <script>
+      const backToTopBtn = document.getElementById('back-to-top');
+      
+      if (backToTopBtn) {
+        // Show/hide button based on scroll position
+        const toggleVisibility = () => {
+          if (window.scrollY > 300) {
+            backToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-4');
+            backToTopBtn.classList.add('opacity-100', 'visible', 'translate-y-0');
+          } else {
+            backToTopBtn.classList.add('opacity-0', 'invisible', 'translate-y-4');
+            backToTopBtn.classList.remove('opacity-100', 'visible', 'translate-y-0');
+          }
+        };
+
+        window.addEventListener('scroll', toggleVisibility);
+        
+        // Scroll to top on click
+        backToTopBtn.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+    </script>
   </body>
 </html>

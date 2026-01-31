@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
+import SkillBadge from '../../components/SkillBadge.astro';
 import { getCollection } from 'astro:content';
 import { languages, useTranslations, type Language } from '../../i18n';
 
@@ -12,8 +13,24 @@ const { lang } = Astro.params as { lang: Language };
 const t = useTranslations(lang);
 
 const allProjects = await getCollection('projects', ({ id }) => id.startsWith(`${lang}/`));
-const featuredProjects = allProjects.filter(({ data }) => data.featured === true);
-const sortedProjects = featuredProjects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const sortedProjects = allProjects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const featuredProjects = sortedProjects.filter((project) => project.data.featured);
+
+const skills = {
+  languages: ['JavaScript', 'Python', 'C#', 'Java', 'Kotlin', 'HTML', 'CSS', 'PL/SQL'],
+  frameworks: ['React', 'Node.js', 'Express.js', '.NET Framework', 'Jetpack Compose', 'Entity Framework Core', 'MonoGame', 'Chart.js', 'Leaflet'],
+  tools: ['MongoDB', 'PostgreSQL', 'Docker', 'Git', 'REST APIs', 'Android', 'MQTT', 'WebSockets'],
+};
+
+const softSkills = [
+  { key: 'skills.soft.communication', icon: 'Communication' },
+  { key: 'skills.soft.problemSolving', icon: 'Problem-Solving' },
+  { key: 'skills.soft.teamwork', icon: 'Team Collaboration' },
+  { key: 'skills.soft.adaptability', icon: 'Adaptability' },
+  { key: 'skills.soft.timeManagement', icon: 'Time Management' },
+  { key: 'skills.soft.clientRelations', icon: 'Client Relations' },
+  { key: 'skills.soft.agile', icon: 'Agile Methodologies' },
+] as const;
 ---
 
 <BaseLayout
@@ -22,23 +39,20 @@ const sortedProjects = featuredProjects.sort((a, b) => b.data.date.valueOf() - a
   lang={lang}
 >
   <!-- Hero Section -->
-  <section class="min-h-[80vh] flex items-center px-6">
+  <section id="hero" class="min-h-[85vh] flex items-center px-6 pt-20">
     <div class="max-w-5xl mx-auto w-full">
-      <p class="text-crimson-400 font-mono mb-4 animate-fade-in-up animate-on-load delay-100" style="animation-fill-mode: forwards;">
-        {t('hero.greeting')}
-      </p>
-      <h1 class="text-5xl md:text-7xl font-bold text-zinc-100 animate-fade-in-up animate-on-load delay-200" style="animation-fill-mode: forwards;">
-        {t('hero.name')}
+      <h1 class="text-5xl md:text-7xl font-bold text-zinc-100 animate-fade-in-up animate-on-load delay-100 name-glow cursor-default inline-block" style="animation-fill-mode: forwards;">
+        Riad Maaji
       </h1>
-      <h2 class="text-3xl md:text-5xl font-bold text-zinc-400 mt-2 animate-fade-in-up animate-on-load delay-300" style="animation-fill-mode: forwards;">
+      <h2 class="text-2xl md:text-4xl font-bold text-zinc-400 mt-4 animate-fade-in-up animate-on-load delay-200" style="animation-fill-mode: forwards;">
         {t('hero.headline')}
       </h2>
-      <p class="mt-6 max-w-xl text-zinc-400 text-lg leading-relaxed animate-fade-in-up animate-on-load delay-400" style="animation-fill-mode: forwards;">
+      <p class="mt-6 max-w-xl text-zinc-400 text-lg leading-relaxed animate-fade-in-up animate-on-load delay-300" style="animation-fill-mode: forwards;">
         {t('hero.bio')}
       </p>
-      <div class="mt-8 flex flex-wrap gap-4 animate-fade-in-up animate-on-load delay-500" style="animation-fill-mode: forwards;">
+      <div class="mt-8 flex flex-wrap gap-4 animate-fade-in-up animate-on-load delay-400" style="animation-fill-mode: forwards;">
         <a
-          href={`/${lang}/projects`}
+          href="#projects"
           class="px-6 py-3 bg-crimson-500 hover:bg-crimson-600 text-white rounded-lg font-medium btn-glow"
         >
           {t('hero.cta.work')}
@@ -53,32 +67,118 @@ const sortedProjects = featuredProjects.sort((a, b) => b.data.date.valueOf() - a
     </div>
   </section>
 
-  <!-- Featured Projects -->
-  {sortedProjects.length > 0 && (
-    <section class="px-6 py-20">
-      <div class="max-w-5xl mx-auto">
-        <div class="flex items-center justify-between mb-8">
-          <h2 class="text-2xl font-bold text-zinc-100">{t('featured.title')}</h2>
-          <a href={`/${lang}/projects`} class="text-crimson-400 hover:text-crimson-300 transition-colors text-sm hover-underline">
-            {t('featured.viewAll')}
-          </a>
-        </div>
+  <!-- Projects Section -->
+  <section id="projects" class="px-6 py-24 scroll-mt-24">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold text-zinc-100 mb-4">{t('projects.featured')}</h2>
+      <p class="text-zinc-400 mb-10">{t('projects.featuredDescription')}</p>
+      
+      {featuredProjects.length > 0 ? (
         <div class="grid md:grid-cols-2 gap-6">
-          {sortedProjects.slice(0, 4).map((project, index) => (
-            <div class="animate-fade-in-up animate-on-load" style={`animation-delay: ${600 + index * 100}ms; animation-fill-mode: forwards;`}>
-              <ProjectCard
-                title={project.data.title}
-                description={project.data.description}
-                tags={project.data.tags}
-                image={project.data.images[0]}
-                href={`/${lang}/projects/${project.id.replace(`${lang}/`, '').replace(/\.md$/, '')}`}
-                featured={project.data.featured}
-                spanFeatured={true}
-              />
-            </div>
+          {featuredProjects.map((project) => (
+            <ProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              tags={project.data.tags}
+              image={project.data.images[0]}
+              href={`/${lang}/projects/${project.id.replace(`${lang}/`, '').replace(/\.md$/, '')}`}
+              featured={project.data.featured}
+              showStar={true}
+            />
           ))}
         </div>
+      ) : (
+        <p class="text-zinc-500">{t('projects.empty')}</p>
+      )}
+
+      <!-- View All Projects Button -->
+      <div class="mt-10 flex justify-center">
+        <a
+          href={`/${lang}/projects`}
+          class="inline-flex items-center gap-2 px-6 py-3 border border-zinc-700 hover:border-crimson-500/50 text-zinc-300 hover:text-zinc-100 rounded-lg transition-all duration-300 font-medium hover:bg-crimson-500/10 group"
+        >
+          {t('projects.viewAll')}
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
       </div>
-    </section>
-  )}
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="px-6 py-24 scroll-mt-24 bg-zinc-900/50">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold text-zinc-100 mb-10">{t('about.title')}</h2>
+      
+      <div class="flex flex-col md:flex-row gap-10 md:gap-16">
+        <!-- Profile Photo -->
+        <div class="flex-shrink-0 flex justify-center md:justify-start">
+          <img
+            src="/riad.jpg"
+            alt="Riad Maaji"
+            class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover object-[center_15%] border-4 border-zinc-800"
+          />
+        </div>
+        
+        <!-- Bio -->
+        <div class="space-y-4 text-zinc-300 text-lg leading-relaxed">
+          <p>{t('about.bio1')}</p>
+          <p>{t('about.bio2')}</p>
+          <p>{t('about.bio3')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="px-6 py-24 scroll-mt-24">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold text-zinc-100 mb-10">{t('skills.title')}</h2>
+      
+      <div class="grid md:grid-cols-2 gap-10">
+        <!-- Technical Skills -->
+        <div class="space-y-8">
+          <div>
+            <h3 class="text-xl font-semibold text-zinc-100 mb-4">{t('skills.languages')}</h3>
+            <div class="flex flex-wrap gap-3">
+              {skills.languages.map((skill) => <SkillBadge name={skill} />)}
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-semibold text-zinc-100 mb-4">{t('skills.frameworks')}</h3>
+            <div class="flex flex-wrap gap-3">
+              {skills.frameworks.map((skill) => <SkillBadge name={skill} />)}
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-semibold text-zinc-100 mb-4">{t('skills.tools')}</h3>
+            <div class="flex flex-wrap gap-3">
+              {skills.tools.map((skill) => <SkillBadge name={skill} />)}
+            </div>
+          </div>
+        </div>
+
+        <!-- Soft Skills -->
+        <div>
+          <h3 class="text-xl font-semibold text-zinc-100 mb-4">{t('skills.soft')}</h3>
+          <div class="flex flex-wrap gap-3">
+            {softSkills.map((skill) => <SkillBadge name={t(skill.key)} iconKey={skill.icon} />)}
+          </div>
+          
+          <!-- Education -->
+          <div class="mt-12">
+            <h3 class="text-xl font-semibold text-zinc-100 mb-4">{t('education.title')}</h3>
+            <div class="border-l-2 border-crimson-500/50 pl-6 hover:border-crimson-500 transition-colors duration-300">
+              <p class="font-medium text-zinc-100">{t('education.degree')}</p>
+              <p class="text-zinc-400">{t('education.school')}</p>
+              <p class="text-sm text-zinc-500">{t('education.date')}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

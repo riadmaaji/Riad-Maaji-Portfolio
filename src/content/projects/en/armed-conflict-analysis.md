@@ -6,7 +6,7 @@ tags: ["React", "Node.js", "Express", "MongoDB", "Chart.js"]
 images: ["/projects/fires-and-funds-1.png", "/projects/fires-and-funds-2.png", "/projects/fires-and-funds-3.png"]
 github: "https://github.com/riadmaaji/Fires-And-Funds-Project"
 live: "https://armed-conflicts-and-military-spending.onrender.com/"
-featured: false
+featured: true
 ---
 
 ## The Problem
