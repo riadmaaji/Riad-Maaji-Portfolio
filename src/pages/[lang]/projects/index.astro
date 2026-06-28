@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ProjectCard from '../../../components/ProjectCard.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
 import { getCollection } from 'astro:content';
 import { languages, useTranslations, type Language } from '../../../i18n';
 
@@ -33,21 +34,27 @@ const sortedProjects = allProjects.sort((a, b) => b.data.date.valueOf() - a.data
         {t('projects.backToHome')}
       </a>
 
-      <h1 class="text-4xl font-bold text-zinc-100 mb-4">{t('projects.all')}</h1>
-      <p class="text-zinc-400 mb-10">{t('projects.description')}</p>
-      
+      <SectionHeading
+        as="h1"
+        eyebrow={t('eyebrow.allWork')}
+        title={t('projects.all')}
+        description={t('projects.description')}
+      />
+
       {sortedProjects.length > 0 ? (
         <div class="grid md:grid-cols-2 gap-6">
-          {sortedProjects.map((project) => (
-            <ProjectCard
-              title={project.data.title}
-              description={project.data.description}
-              tags={project.data.tags}
-              image={project.data.images[0]}
-              href={`/${lang}/projects/${project.id.replace(`${lang}/`, '').replace(/\.md$/, '')}`}
-              featured={project.data.featured}
-              showStar={true}
-            />
+          {sortedProjects.map((project, i) => (
+            <div data-reveal style={`--reveal-delay: ${(i % 4) * 80}ms`}>
+              <ProjectCard
+                title={project.data.title}
+                description={project.data.description}
+                tags={project.data.tags}
+                image={project.data.images[0]}
+                href={`/${lang}/projects/${project.id.replace(`${lang}/`, '').replace(/\.md$/, '')}`}
+                featured={project.data.featured}
+                showStar={true}
+              />
+            </div>
           ))}
         </div>
       ) : (

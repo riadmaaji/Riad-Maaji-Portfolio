@@ -16,6 +16,14 @@ export const translations = {
     'nav.experience': 'Experience',
     'nav.skills': 'Skills',
 
+    // Section eyebrows
+    'eyebrow.work': 'Selected Work',
+    'eyebrow.allWork': 'Archive',
+    'eyebrow.about': 'About Me',
+    'eyebrow.experience': 'Experience',
+    'eyebrow.skills': 'Skills',
+    'eyebrow.education': 'Education',
+
     // Hero
     'hero.greeting': 'Hey, I\'m',
     'hero.name': 'Riad.',
@@ -93,6 +101,14 @@ export const translations = {
     'nav.about': 'À propos',
     'nav.experience': 'Expérience',
     'nav.skills': 'Compétences',
+
+    // Section eyebrows
+    'eyebrow.work': 'Travaux choisis',
+    'eyebrow.allWork': 'Archives',
+    'eyebrow.about': 'À propos',
+    'eyebrow.experience': 'Expérience',
+    'eyebrow.skills': 'Compétences',
+    'eyebrow.education': 'Formation',
 
     // Hero
     'hero.greeting': 'Salut, je suis',

@@ -22,6 +22,9 @@ const ogImageURL = new URL(image, Astro.site).toString();
 <!doctype html>
 <html lang={lang} class="dark">
   <head>
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -71,7 +74,7 @@ const ogImageURL = new URL(image, Astro.site).toString();
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -117,6 +120,27 @@ const ogImageURL = new URL(image, Astro.site).toString();
             behavior: 'smooth'
           });
         });
+      }
+
+      // Scroll reveal
+      const revealEls = document.querySelectorAll('[data-reveal]');
+      if (revealEls.length) {
+        if ('IntersectionObserver' in window) {
+          const revealObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-visible');
+                  revealObserver.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
+          );
+          revealEls.forEach((el) => revealObserver.observe(el));
+        } else {
+          revealEls.forEach((el) => el.classList.add('is-visible'));
+        }
       }
     </script>
   </body>

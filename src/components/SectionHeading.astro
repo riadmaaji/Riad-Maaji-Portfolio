@@ -1,0 +1,25 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  description?: string;
+  align?: 'left' | 'center';
+  as?: 'h1' | 'h2';
+  class?: string;
+}
+
+const { eyebrow, title, description, align = 'left', as: Heading = 'h2', class: className = '' } = Astro.props;
+---
+
+<div class:list={['mb-10', align === 'center' && 'text-center', className]}>
+  <div class:list={['flex items-center gap-3 mb-3', align === 'center' && 'justify-center']}>
+    <span class="h-px w-8 bg-crimson-500/60" aria-hidden="true"></span>
+    <span class="font-mono text-xs font-medium uppercase tracking-[0.2em] text-crimson-400">
+      {eyebrow}
+    </span>
+  </div>
+  <Heading class="font-display text-3xl md:text-4xl font-bold text-zinc-100 tracking-tight">
+    {title}
+  </Heading>
+  {description && <p class="mt-4 max-w-2xl text-zinc-400">{description}</p>}
+</div>
