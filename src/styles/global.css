@@ -269,20 +269,13 @@
     box-shadow: 0 4px 15px rgba(225, 29, 72, 0.2);
   }
 
-  /* Name glow on hover */
+  /* Name hover: refined letter-spacing expansion only */
   .name-glow {
-    transition: all 0.4s ease;
-    text-shadow: 0 0 0 transparent;
+    transition: letter-spacing 0.35s ease;
   }
 
   .name-glow:hover {
-    color: #f43f5e;
-    text-shadow: 
-      0 0 10px rgba(244, 63, 94, 0.5),
-      0 0 20px rgba(244, 63, 94, 0.4),
-      0 0 40px rgba(244, 63, 94, 0.3),
-      0 0 80px rgba(244, 63, 94, 0.2);
-    transform: scale(1.02);
+    letter-spacing: 0.02em;
   }
 
   /* Scroll reveal (JS-gated so no-JS users always see content) */
