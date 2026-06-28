@@ -78,9 +78,33 @@
 
   body {
     @apply bg-zinc-950 text-zinc-100 antialiased;
+  }
+
+  /* Faded dot-grid: fixed background layer masked so it fades toward the
+     edges/bottom, reading as atmosphere rather than a flat uniform pattern. */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
     background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.15) 1px, transparent 0);
     background-size: 24px 24px;
-    background-attachment: fixed;
+    -webkit-mask-image: radial-gradient(ellipse 100% 85% at 50% 0%, #000 30%, transparent 78%);
+    mask-image: radial-gradient(ellipse 100% 85% at 50% 0%, #000 30%, transparent 78%);
+  }
+
+  /* Film grain: fixed, very low-opacity noise overlay for a matte texture.
+     pointer-events:none keeps it purely decorative. */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 120px 120px;
   }
 
   ::selection {
