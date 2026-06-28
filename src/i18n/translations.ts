@@ -13,13 +13,14 @@ export const translations = {
     'nav.home': 'Home',
     'nav.projects': 'Projects',
     'nav.about': 'About',
+    'nav.experience': 'Experience',
     'nav.skills': 'Skills',
 
     // Hero
     'hero.greeting': 'Hey, I\'m',
     'hero.name': 'Riad.',
     'hero.headline': 'I turn ideas into apps, from database to UI.',
-    'hero.bio': 'Final-year CS student at Dawson College. I like building things that work well and look good. Currently looking for my first dev role.',
+    'hero.bio': 'Full-stack developer and Dawson College Computer Science Technology graduate. I like building things that work well and look good. Currently looking for my first dev role.',
     'hero.cta.work': 'See My Work',
     'hero.cta.contact': 'Say Hi',
 
@@ -38,9 +39,19 @@ export const translations = {
 
     // About Section
     'about.title': 'About Me',
-    'about.bio1': 'I\'m finishing up my CS degree at Dawson College in Montreal. I got into programming because I wanted to build stuff, not just use it.',
+    'about.bio1': 'I graduated from Dawson College with a Computer Science Technology DEC in Montreal. I got into programming because I wanted to build stuff, not just use it.',
     'about.bio2': 'Before coding, I worked in sales. That taught me how to talk to people, figure out what they actually need, and explain things without the jargon. Turns out those skills are pretty useful in tech too.',
-    'about.bio3': 'Right now I\'m looking for a dev role where I can keep learning and actually ship things that matter.',
+    'about.bio3': 'I also completed a full-stack web developer internship at Mozna Platforms, working on React, Node/Express, MongoDB, REST APIs, and real-time features for production POS and inventory workflows. Right now I\'m looking for a dev role where I can keep learning and ship things that matter.',
+
+    // Experience Section
+    'experience.title': 'Experience',
+    'experience.role': 'Full Stack Web Developer Intern',
+    'experience.company': 'Mozna Platforms Inc.',
+    'experience.date': 'Apr 13-May 29, 2026',
+    'experience.location': 'Remote',
+    'experience.bullet1': 'Built and refined React components for responsive POS and inventory management workflows.',
+    'experience.bullet2': 'Worked with Node.js, Express, MongoDB, REST APIs, and Socket.io to support backend and real-time features.',
+    'experience.bullet3': 'Used Git in a production codebase while turning designs and feature ideas into functional web application components.',
 
     // Skills Section
     'skills.title': 'Skills',
@@ -60,7 +71,7 @@ export const translations = {
     'education.title': 'Education',
     'education.degree': 'Computer Science Technology',
     'education.school': 'Dawson College',
-    'education.date': 'Graduating 2026',
+    'education.date': 'Graduated 2026',
 
     // 404
     '404.title': '404',
@@ -71,7 +82,7 @@ export const translations = {
     'footer.rights': 'All rights reserved.',
 
     // Meta
-    'meta.description': 'Full-stack developer and CS student. I build web apps.',
+    'meta.description': 'Full-stack developer and Dawson College Computer Science Technology graduate. I build web apps.',
     'meta.about.description': 'Learn more about me and my background.',
     'meta.projects.description': 'Projects I\'ve built.',
   },
@@ -80,13 +91,14 @@ export const translations = {
     'nav.home': 'Accueil',
     'nav.projects': 'Projets',
     'nav.about': 'À propos',
+    'nav.experience': 'Expérience',
     'nav.skills': 'Compétences',
 
     // Hero
     'hero.greeting': 'Salut, je suis',
     'hero.name': 'Riad.',
     'hero.headline': 'Je transforme des idées en apps, du backend au frontend.',
-    'hero.bio': 'Étudiant en dernière année en informatique au Collège Dawson. J\'aime construire des trucs qui fonctionnent bien et qui ont du style. Je cherche mon premier poste en dev.',
+    'hero.bio': 'Développeur full-stack et diplômé du DEC en informatique du Collège Dawson. J\'aime construire des trucs qui fonctionnent bien et qui ont du style. Je cherche mon premier poste en dev.',
     'hero.cta.work': 'Voir mes projets',
     'hero.cta.contact': 'Me contacter',
 
@@ -105,9 +117,19 @@ export const translations = {
 
     // About Section
     'about.title': 'À propos',
-    'about.bio1': 'Je termine mon DEC en informatique au Collège Dawson à Montréal. J\'ai commencé à coder parce que je voulais créer des trucs, pas juste les utiliser.',
+    'about.bio1': 'J\'ai obtenu mon DEC en informatique au Collège Dawson à Montréal. J\'ai commencé à coder parce que je voulais créer des trucs, pas juste les utiliser.',
     'about.bio2': 'Avant le code, j\'ai travaillé en vente. Ça m\'a appris à parler aux gens, comprendre leurs vrais besoins et expliquer les choses simplement. Ces compétences sont super utiles en tech aussi.',
-    'about.bio3': 'Je cherche un poste de dev où je peux continuer à apprendre et livrer des projets qui comptent.',
+    'about.bio3': 'J\'ai aussi complété un stage en développement web full-stack chez Mozna Platforms, où j\'ai travaillé avec React, Node/Express, MongoDB, des API REST et des fonctionnalités en temps réel pour des flux de travail de POS et de gestion d\'inventaire en production. Je cherche maintenant un poste de dev où je peux continuer à apprendre et livrer des projets qui comptent.',
+
+    // Experience Section
+    'experience.title': 'Expérience',
+    'experience.role': 'Stagiaire développeur web full-stack',
+    'experience.company': 'Mozna Platforms Inc.',
+    'experience.date': '13 avr.-29 mai 2026',
+    'experience.location': 'À distance',
+    'experience.bullet1': 'Création et amélioration de composants React pour des flux de travail responsives de POS et de gestion d\'inventaire.',
+    'experience.bullet2': 'Travail avec Node.js, Express, MongoDB, des API REST et Socket.io pour soutenir des fonctionnalités backend et en temps réel.',
+    'experience.bullet3': 'Utilisation de Git dans une base de code en production pour transformer des maquettes et idées de fonctionnalités en composants web fonctionnels.',
 
     // Skills Section
     'skills.title': 'Compétences',
@@ -127,7 +149,7 @@ export const translations = {
     'education.title': 'Formation',
     'education.degree': 'Techniques de l\'informatique',
     'education.school': 'Collège Dawson',
-    'education.date': 'Diplôme prévu 2026',
+    'education.date': 'Diplômé en 2026',
 
     // 404
     '404.title': '404',
@@ -138,7 +160,7 @@ export const translations = {
     'footer.rights': 'Tous droits réservés.',
 
     // Meta
-    'meta.description': 'Développeur full-stack et étudiant en informatique. Je crée des applications web.',
+    'meta.description': 'Développeur full-stack et diplômé en informatique du Collège Dawson. Je crée des applications web.',
     'meta.about.description': 'En savoir plus sur moi et mon parcours.',
     'meta.projects.description': 'Les projets que j\'ai réalisés.',
   },
